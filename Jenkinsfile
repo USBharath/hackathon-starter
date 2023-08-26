@@ -9,7 +9,7 @@ pipeline {
         stage('npm start') {
             steps {
                 sh '''
-                # sudo npm install -g nodemon
+                sudo npm install -g nodemon
                 nodemon app.js
                 '''
             }
