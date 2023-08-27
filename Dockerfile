@@ -1,20 +1,17 @@
 FROM node:18-slim
-# FROM node:19.5.0-alpine
 
 WORKDIR /starter
 ENV NODE_ENV development
 
-# COPY package.json /starter/package.json
-COPY . .
+COPY package.json /starter/package.json
+
 RUN npm install pm2 -g
 RUN npm install -g npm@9.8.1
-# RUN npm install sass
-RUN npm install --production --force
-# RUN npm i
+RUN npm install --production
 
 COPY .env.example /starter/.env.example
-# COPY . /starter
+COPY . /starter
 
 CMD ["pm2-runtime","app.js"]
 
-EXPOSE 3000
+EXPOSE 8080
