@@ -11,7 +11,7 @@ RUN npm install pm2 -g
 
 COPY .env.example /starter/.env.example
 COPY . /starter
-
+RUN npm install --production
 CMD ["pm2-runtime","app.js"]
 
 EXPOSE 3000
