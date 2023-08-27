@@ -12,8 +12,8 @@ RUN npm install sass
 # RUN npm install --production
 RUN npm i
 
-COPY .env.example /starter/.env.example
-COPY . /starter
+# COPY .env.example /starter/.env.example
+# COPY . /starter
 
 # CMD ["node","app.js"]
 CMD ["pm2-runtime","app.js"]
