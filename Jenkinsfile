@@ -6,13 +6,23 @@ pipeline {
                 git credentialsId: 'github', branch: 'master', url: 'https://github.com/USBharath/hackathon-starter.git'
             }
         }
-        stage('npm start') {
+        // stage('npm start') {
+        //     steps {
+        //         sh '''
+        //         npm install express
+        //         sudo npm install -g nodemon
+        //         nodemon app.js
+        //         '''
+        //     }
+        // }
+        stage('build') {
             steps {
-                sh '''
-                npm install express
-                sudo npm install -g nodemon
-                nodemon app.js
-                '''
+                sh 'docker build -t hackton:latest .'
+            }
+        }
+        stage('Trivy scan') {
+            steps {
+                sh 'trivy hackton:latest'
             }
         }
     }
