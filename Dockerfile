@@ -8,8 +8,6 @@ COPY package.json /starter/package.json
 RUN npm install pm2 -g
 # RUN npm install --production
 # RUN npm i
-RUN yarn install --production --ignore-engines
-
 
 COPY .env.example /starter/.env.example
 COPY . /starter
