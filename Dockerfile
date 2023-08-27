@@ -3,7 +3,8 @@ FROM node:18-slim
 WORKDIR /starter
 ENV NODE_ENV development
 
-COPY package.json /starter/package.json
+# COPY package.json /starter/package.json
+COPY . /starter
 
 # RUN npm install pm2 -g
 RUN npm install -g npm@9.8.1
