@@ -7,6 +7,7 @@ COPY package.json /starter/package.json
 
 RUN npm install pm2 -g
 RUN npm install -g npm@9.8.1
+RUN npm install sass
 RUN npm install --production
 
 COPY .env.example /starter/.env.example
