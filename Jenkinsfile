@@ -6,7 +6,7 @@ pipeline {
                 git credentialsId: 'github', branch: 'master', url: 'https://github.com/USBharath/hackathon-starter.git'
             }
         }
-        // stage('npm start') {
+        // stage('Deploy') {
         //     steps {
         //         sh '''
         //         npm install express
