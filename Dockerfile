@@ -8,7 +8,7 @@ COPY package.json /starter/package.json
 RUN npm install pm2 -g
 # RUN npm install --production
 # RUN npm i
-RUN NODE_ENV=development npm i
+RUN yarn install --production
 
 
 COPY .env.example /starter/.env.example
