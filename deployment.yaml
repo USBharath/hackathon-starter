@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azure-hackathon
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: azure-hackathon
+  template:
+    metadata:
+      labels:
+        app: azure-hackathon
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: azure-hackathon
+        image: projectnodejs.azurecr.io/projectnodejs:$BUILD_NUMBER
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 3000
+       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: public-svc
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: hackathon-public
