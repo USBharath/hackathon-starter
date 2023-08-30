@@ -17,7 +17,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
       - name: azure-hackathon
-        image: projectnodejs.azurecr.io/projectnodejs:build-$BUILD_NUMBER
+        image: projectnodejs.azurecr.io/projectnodejs:master-16
         resources:
           requests:
             cpu: 100m
