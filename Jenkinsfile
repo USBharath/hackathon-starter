@@ -1,28 +1,48 @@
 pipeline {
-    agent { label 'slave' }
-    stages {
-        stage('Git clone') {
+  environment {
+    registry = "projectnodejs"
+    registryUrl = 'projectnodejs.azurecr.io'
+    registryCredential = 'acr_registry'
+    dockerImage = ''
+    BRANCH = 'master'
+  }
+  agent any
+//   agent { label 'slave' }
+  
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git credentialsId: 'github', branch: 'master', url: 'https://github.com/USBharath/hackathon-starter.git'
+      }
+    }
+    stage('Building Docker Image') {
+               steps {
+                   script {
+                       dockerImage = docker.build registry + ":${BRANCH}-$BUILD_NUMBER"
+                   }
+               }
+        }
+        stage('Deploy to ECR') {
             steps {
-                git credentialsId: 'github', branch: 'master', url: 'https://github.com/USBharath/hackathon-starter.git'
+                script{
+                    docker.withRegistry( "http://${registryUrl}", registryCredential ) {
+                    dockerImage.push()
+                    }
+                }
             }
         }
-        // stage('Deploy') {
-        //     steps {
-        //         sh '''
-        //         npm install express
-        //         sudo npm install -g nodemon
-        //         nodemon app.js
-        //         '''
-        //     }
-        // }
-        stage('build') {
-            steps {
-                sh 'docker build -t hackton:latest .'
-            }
+        stage('Cleaning Up') {
+               steps{
+                 sh "docker rmi --force $registry:${BRANCH}-$BUILD_NUMBER"
+               }
         }
-        stage('Trivy scan') {
+        stage ('K8S Deploy') {
             steps {
-                sh 'trivy hackton:latest'
+                script {
+                    withKubeConfig([credentialsId: 'aks_config', serverUrl: '']) {
+                    sh ('kubectl apply -f  deployment.yaml')
+                    }
+                }
             }
         }
     }
