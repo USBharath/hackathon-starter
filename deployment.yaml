@@ -18,6 +18,8 @@ spec:
       containers:
       - name: azure-hackathon
         image: projectnodejs.azurecr.io/projectnodejs:master-27
+      imagePullSecrets:
+      - name: acrlogin 
         resources:
           requests:
             cpu: 256m
