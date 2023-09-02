@@ -41,7 +41,7 @@ pipeline {
                 script {
                     withKubeConfig([credentialsId: 'aks_config', serverUrl: '']) {
                     sh '''
-                    kubectl create secret docker-registry acrlogin \
+                    kubectl create secret docker-registry acrcred \
                         --namespace default \
                         --docker-server=projectnodejs.azurecr.io \
                         --docker-username=projectnodejs \
