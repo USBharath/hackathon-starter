@@ -18,8 +18,7 @@ spec:
       containers:
       - name: azure-hackathon
         image: projectnodejs.azurecr.io/projectnodejs:master-27
-      imagePullSecrets:
-      - name: acrlogin 
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: 256m
@@ -29,6 +28,8 @@ spec:
             memory: 512Mi
         ports:
         - containerPort: 3000
+      imagePullSecrets:
+        - name: acrlogin
        
 ---
 apiVersion: v1
