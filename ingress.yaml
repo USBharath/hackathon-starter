@@ -12,10 +12,17 @@ spec:
   rules:
   - http:
       paths:
-      - path: /(.*)
+      - path: /azure-hackathon(/|$)(.*)
         pathType: Prefix
         backend:
           service:
-            name: public-svc
+            name: azure-hackathon
+            port:
+              number: 80
+      - path: /(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: azure-hackathon
             port:
               number: 80
