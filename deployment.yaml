@@ -42,15 +42,25 @@ spec:
 #   - port: 80
 #   selector:
 #     app: azure-hackathon
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: internal-app
+#   annotations:
+#     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+# spec:
+#   type: LoadBalancer
+#   ports:
+#   - port: 3000
+#   selector:
+#     app: azure-hackathon
 apiVersion: v1
 kind: Service
 metadata:
-  name: internal-app
-  annotations:
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  name: public-svc
 spec:
   type: LoadBalancer
   ports:
-  - port: 3000
+  - port: 80
   selector:
     app: azure-hackathon
