@@ -20,10 +20,10 @@ spec:
         image: projectnodejs.azurecr.io/projectnodejs:build-$BUILD_NUMBER
         resources:
           requests:
-            cpu: 500m
-            memory: 512Mi
+            cpu: 256m
+            memory: 256Mi
           limits:
-            cpu: 1024m
+            cpu: 512m
             memory: 512Mi
         ports:
         - containerPort: 3000
