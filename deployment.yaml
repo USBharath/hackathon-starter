@@ -35,10 +35,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: public-svc
+  name: hacathon-public
 spec:
   type: LoadBalancer
   ports:
   - port: 80
   selector:
-    app: hackathon-public
+    app: azure-hackathon
