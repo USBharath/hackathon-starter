@@ -40,13 +40,13 @@ pipeline {
             steps {
                 script {
                     withKubeConfig([credentialsId: 'aks_config', serverUrl: '']) {
-                    // sh '''
-                    // kubectl create secret docker-registry acrcred \
-                    //     --namespace default \
-                    //     --docker-server=projectnodejs.azurecr.io \
-                    //     --docker-username=projectnodejs \
-                    //     --docker-password=pg/+cFDbqD/mNI+nfNS4kA+5fO1eTq+Hb8gKxawVtI+ACRC/ro8t
-                    // '''
+                    sh '''
+                    kubectl create secret docker-registry acrcred \
+                        --namespace default \
+                        --docker-server=projectnodejs.azurecr.io \
+                        --docker-username=projectnodejs \
+                        --docker-password=pg/+cFDbqD/mNI+nfNS4kA+5fO1eTq+Hb8gKxawVtI+ACRC/ro8t
+                    '''
                     sh ('kubectl apply -f  deployment.yaml')
                     }
                 }
