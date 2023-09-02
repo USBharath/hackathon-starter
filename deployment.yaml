@@ -32,10 +32,22 @@ spec:
         - name: acrcred
        
 ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: hacathon-public
+# spec:
+#   type: LoadBalancer
+#   ports:
+#   - port: 80
+#   selector:
+#     app: azure-hackathon
 apiVersion: v1
 kind: Service
 metadata:
-  name: hacathon-public
+  name: internal-app
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 spec:
   type: LoadBalancer
   ports:
