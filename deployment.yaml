@@ -24,8 +24,8 @@ spec:
             cpu: 128m
             memory: 128Mi
           limits:
-            cpu: 512m
-            memory: 512Mi
+            cpu: 256m
+            memory: 256Mi
         ports:
         - containerPort: 3000
       imagePullSecrets:
@@ -59,8 +59,8 @@ kind: Service
 metadata:
   name: azure-hackathon
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
-  - port: 3000
+  - port: 80
   selector:
     app: azure-hackathon
