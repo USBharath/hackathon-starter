@@ -48,7 +48,7 @@ pipeline {
                     //     --docker-password=pg/+cFDbqD/mNI+nfNS4kA+5fO1eTq+Hb8gKxawVtI+ACRC/ro8t
                     // '''
                     sh ('kubectl apply -f  deployment.yaml')
-                    sh ('kubectl apply -f  ingress.yaml')
+                    // sh ('kubectl apply -f  ingress.yaml')
                     }
                 }
             }
