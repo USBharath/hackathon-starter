@@ -1,7 +1,7 @@
 pipeline {
   environment {
-    registry = "projectnodejs"
-    registryUrl = 'projectnodejs.azurecr.io'
+    registry = "projectnodejs.azurecr.io/projectnodejs"
+    // registryUrl = 'projectnodejs.azurecr.io'
     registryCredential = 'acr_registry'
     dockerImage = ''
     BRANCH = 'master'
@@ -47,8 +47,10 @@ pipeline {
         stage('Deploy to ECR') {
             steps {
                 script{
-                    docker.withRegistry( "http://${registryUrl}", registryCredential ) {
+                    // docker.withRegistry( "http://${registryUrl}", registryCredential ) {
+                    docker.withRegistry('', registryCredential) {
                     dockerImage.push()
+                    // }
                     }
                 }
             }
