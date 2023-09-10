@@ -41,7 +41,7 @@ pipeline {
     stage('Trivy analysis') {
          steps {
             // sh 'trivy --exit-code 1 --severity CRITICAL hackton:latest'
-            sh 'trivy projectnodejs.azurecr.io/projectnodejs:NODE-${BRANCH}-$BUILD_NUMBER'
+            sh 'trivy $registry:NODE-${BRANCH}-$BUILD_NUMBER'
           }
       }
         stage('Deploy to ECR') {
