@@ -55,7 +55,7 @@ pipeline {
         }
         stage('Cleaning Up') {
                steps{
-                 sh "docker rmi --force $registry:${BRANCH}-$BUILD_NUMBER"
+                 sh "docker rmi --force $registry:NODE-${BRANCH}-$BUILD_NUMBER"
                }
         }
         stage ('K8S Deploy') {
