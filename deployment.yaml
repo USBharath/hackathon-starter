@@ -17,7 +17,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
       - name: azure-hackathon
-        image: projectnodejs.azurecr.io/projectnodejs:NODE-master-53
+        image: projectnodejs.azurecr.io/projectnodejs:NODE-${BRANCH}-${BUILD_NUMBER}
         imagePullPolicy: Always
         resources:
           requests:
