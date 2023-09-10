@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "projectnodejs.azurecr.io/projectnodejs"
+    registry = "projectnodejs.azurecr.io:projectnodejs"
     // registryUrl = 'projectnodejs.azurecr.io'
     registryCredential = 'acr_registry'
     dockerImage = ''
